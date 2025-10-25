@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Initial schema - will expand in next iterations
+model Property {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String?  @db.Text
+  status      String   @default("available") // available, under_offer, sold, off_market
+  priceNGN    Decimal  @db.Decimal(15, 2)
+  bedrooms    Int?
+  bathrooms   Decimal? @db.Decimal(3, 1)
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, featured])
+  @@index([createdAt])
+}
