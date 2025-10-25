@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, MapPin, Home, DollarSign } from 'lucide-react';
+import { Search, MapPin, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function QuickSearch() {
@@ -89,7 +89,9 @@ export function QuickSearch() {
 
           {/* Price Range */}
           <div className="relative">
-            <DollarSign className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate" />
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-base font-semibold text-slate">
+              ₦
+            </span>
             <select
               value={formData.priceRange}
               onChange={(e) =>
@@ -140,7 +142,7 @@ export function QuickSearch() {
               e.preventDefault();
               setFormData({ ...formData, location: area });
             }}
-            className="rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/50"
+            className="rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-medium text-white backdrop-blur-sm transition-all hover:border-white/50 hover:bg-white/20"
           >
             {area}
           </button>
